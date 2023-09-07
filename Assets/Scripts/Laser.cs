@@ -17,7 +17,7 @@ public class Laser : MonoBehaviour
     void Update()
     {
         //Move in the direction of our own up direction
-        transform.position += transform.up * 5 * Time.deltaTime;
+        transform.position += transform.up * 20 * Time.deltaTime;
     }
 
     //Unity Collision function
