@@ -23,16 +23,21 @@ public class AssignmentOtherChar : MonoBehaviour
 
     private Vector2 velocity;
     public Vector2 pos ;
+
     float gravity = 0;
 
     bool isG = false;
 
     int health = 3;
 
+    Rigidbody2D rb;
+
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         pos = transform.position;
     }
+
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -78,7 +83,7 @@ public class AssignmentOtherChar : MonoBehaviour
         // apply velocity to the position and position to the player.
         pos += velocity * Time.deltaTime;
         transform.position = pos;
-
+        //rb.velocity = velocity;
     }
 
 
