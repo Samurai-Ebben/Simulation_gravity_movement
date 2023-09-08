@@ -22,12 +22,17 @@ public class AssignmentOtherChar : MonoBehaviour
     public float maxSpeed = 5;
 
     private Vector2 velocity;
-    private Vector2 pos;
+    public Vector2 pos ;
     float gravity = 0;
 
     bool isG = false;
 
     int health = 3;
+
+    private void Start()
+    {
+        pos = transform.position;
+    }
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
