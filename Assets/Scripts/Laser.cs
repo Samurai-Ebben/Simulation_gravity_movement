@@ -21,16 +21,18 @@ public class Laser : MonoBehaviour
     }
 
     //Unity Collision function
-    //Called when a rigidbody2D gameObject collides with a collider2D
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         //Change our color to green
         GetComponent<SpriteRenderer>().color = Color.green;
 
         //Create a new explosion and save that explosion in a variable.
         GameObject newExplosion = Instantiate(explosion, transform.position, transform.rotation);
-
         //Destroy the newly created explosion object after 1 second.
         Destroy(newExplosion, 1);
     }
+
+
 }

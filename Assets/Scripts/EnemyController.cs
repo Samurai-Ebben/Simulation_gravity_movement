@@ -8,7 +8,6 @@ public class EnemyController : MonoBehaviour
     Transform target;
     Rigidbody2D rb;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -24,14 +23,18 @@ public class EnemyController : MonoBehaviour
         rb.velocity = dire * speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.GetComponent<Laser>() != null)
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
-
         }
+        if(other.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+        
     }
-
 }

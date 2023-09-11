@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Assignment5 : MonoBehaviour
 {
@@ -10,10 +11,13 @@ public class Assignment5 : MonoBehaviour
     public float speed = 2f;
 
     bool isG = false;
- 
+
+
+    public float health = 3;
     // Update is called once per frame
     void Update()
     {
+        GameManager.Instance.playersHealth = health;
 
         float hori = Input.GetAxisRaw("Horizontal");
         float vert = Input.GetAxisRaw("Vertical") ;
@@ -68,5 +72,32 @@ public class Assignment5 : MonoBehaviour
             position.x = -8.45f - 0.5f;
         }
 
+    }
+
+
+    public void Death()
+    {
+        if (health < 0)
+        {
+            Debug.Log("Dead");
+        }
+        else
+        {
+            position = Vector3.zero;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "PickUp")
+        {
+            Destroy(other.gameObject);
+            GameManager.Instance.score += 5;
+        }
+        if(other.gameObject.tag == "Enemy")
+        {
+            health--;
+            Debug.Log(health);
+            Death();
+        }
     }
 }

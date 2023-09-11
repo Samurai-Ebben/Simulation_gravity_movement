@@ -17,12 +17,15 @@ public class AssignmentOtherChar : MonoBehaviour
      * - make screen wrapping
      * - add gravity when g is pressing g.
      */
+    public GameObject explosion; //Reference to our explosion object
 
     public float speed = 2f;
     public float maxSpeed = 5;
 
     private Vector2 velocity;
     public Vector2 pos ;
+
+
 
     float gravity = 0;
 
@@ -119,6 +122,7 @@ public class AssignmentOtherChar : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         health--;
+        Destroy(collision.gameObject);
         Death();
         
     }
@@ -126,10 +130,13 @@ public class AssignmentOtherChar : MonoBehaviour
     {
         if(health <= 0)
         {
+            //Play exp
+            GameObject newExplosion = Instantiate(explosion, transform.position, transform.rotation);
+
+            Destroy(newExplosion, 0.5f);
             Destroy(gameObject);
         }
     }
 
-    
 
 }
